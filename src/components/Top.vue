@@ -1,6 +1,6 @@
 <template lang="jade">
   section.section
-    .columns.is-mobile
+    .columns
       .column.is-4.is-offset-4(v-for="author in authors")
         a.button.author(v-link="{path: author.url}")
           span.icon

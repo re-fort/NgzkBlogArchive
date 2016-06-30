@@ -1,5 +1,5 @@
 <template lang="jade">
-  .columns.is-mobile
+  .columns
     .column.is-8.is-offset-2
       a.button.is-light.is-loading(v-show="loading")
       div(v-for="entry in entrys | orderBy 'date'")

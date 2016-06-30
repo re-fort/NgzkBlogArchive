@@ -1,5 +1,5 @@
 <template lang="jade">
-  .columns.is-mobile
+  .columns
     .column.is-4.is-offset-4
       p.control
         span.select
