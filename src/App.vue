@@ -39,14 +39,14 @@ export default {
     }
   },
   ready: function() {
-    let self = this;
+    let self = this
     document.onscroll = function(e){
-      self.position = document.documentElement.scrollTop || document.body.scrollTop;
+      self.position = document.documentElement.scrollTop || document.body.scrollTop
     }
   },
   methods:{
     scrollToTop: function(){
-      window.scrollTo(0,0);
+      window.scrollTo(0,0)
     }
   }
 }

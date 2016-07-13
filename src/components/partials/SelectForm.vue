@@ -40,7 +40,7 @@ export default {
         this.entrys = response.data
         this.loading = false
       }, function (response) {
-        console.log(response);
+        console.log(response)
       })
     }
   }
