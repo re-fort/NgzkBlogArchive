@@ -1,35 +1,39 @@
-<template lang="jade">
+<template lang="pug">
   .columns
     .column.is-8.is-offset-2
-      a.button.is-light.is-loading(v-show="loading")
-      div(v-for="entry in entrys | orderBy 'date'")
+      a.button.is-light.is-loading(v-show="isLoading")
+      div(v-for="entry in entrys")
         h1.clearfix
           span.date
-            span.yearmonth(v-text="entry.date | YYYY/MM")
+            span.yearmonth
+              | {{ entry.date | YYYY/MM }}
             span.daydate
-              span.dd1(v-text="entry.date | DD")
+              span.dd1
+                | {{ entry.date | DD }}
           span.heading
             span.author
               | {{ author.name }}
             span.entrytitle
               | {{ entry.title }}
         .fkd
-        .entrybody
-          | {{{ entry.body }}}
+        .entrybody(v-html="entry.body")
         .entrybottom
 </template>
 
 <script>
 export default {
+  name: 'Entry',
   props: {
-    entrys: {
-      type: Array
-    },
     author: {
       type: Object
+    }
+  },
+  computed: {
+    entrys () {
+      return _.orderBy(this.$store.state.entrys, 'date')
     },
-    loading: {
-      type: Boolean
+    isLoading () {
+      return this.$store.state.isLoading
     }
   }
 }

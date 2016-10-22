@@ -1,11 +1,11 @@
-<template lang="jade">
+<template lang="pug">
   #app
     section.hero.is-info
       .hero-head
         .container
           nav.nav
             .nav-left
-              a.nav-item(v-link="{path: '/'}")
+              router-link.nav-item(:to="'/'")
                 span.icon
                   i.fa.fa-bookmark
                 span NgzkBlogArchive
@@ -33,12 +33,13 @@
 
 <script>
 export default {
+  name: 'App',
   data () {
     return {
       position: 0
     }
   },
-  ready: function() {
+  created: function() {
     let self = this
     document.onscroll = function(e){
       self.position = document.documentElement.scrollTop || document.body.scrollTop

@@ -1,7 +1,8 @@
 // App Setting
-import 'filters.js'
-import routes from 'routes.js'
-import App from 'App.vue'
+import 'filters'
+import routes from 'routes'
+import store from 'vuex/store'
+import App from 'App'
 
 // Scss
 import 'stylesheets/bulma.scss'
@@ -12,7 +13,16 @@ Vue.use(VueResource)
 
 // Vue Routing
 Vue.use(VueRouter)
-let router = new VueRouter()
-router.map(routes)
+const router = new VueRouter(routes)
 
-router.start(Vue.extend(App), '#app')
+// vue-router and vuex store in sync.
+VuexRouterSync.sync(store, router)
+
+new Vue({
+  router,
+  store,
+  template: '<App ref="app" />',
+  components: {
+    'App': App
+  }
+}).$mount('#app')

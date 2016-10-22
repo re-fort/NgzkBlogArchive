@@ -1,29 +1,24 @@
-<template lang="jade">
+<template lang="pug">
   .columns
     .column.is-4.is-offset-4
       p.control
         span.select
           select(v-model="archive" @change="getEntrys")
-            option(v-for="ym in yms" v-bind:value="ym" v-text="ym | YYYYMM_JP")
+            option(v-for="ym in yms" v-bind:value="ym")
+              | {{ ym | YYYYMM_JP }}
 </template>
 
 <script>
 import Settings from 'settings'
+import * as Types from 'vuex/types'
 export default {
+  name: 'SelectForm',
   props: {
     yms: {
       type: Array
     },
     author: {
       type: Object
-    },
-    entrys: {
-      type: Array,
-      twoWay: true
-    },
-    loading: {
-      type: Boolean,
-      twoWay: true
     }
   },
   data () {
@@ -33,15 +28,7 @@ export default {
   },
   methods: {
     getEntrys: function() {
-      this.entrys = []
-      this.loading = true
-      this.$http.get(Settings.Api.root + `${this.author.url}/${this.archive}`)
-      .then(function (response) {
-        this.entrys = response.data
-        this.loading = false
-      }, function (response) {
-        console.log(response)
-      })
+      this.$store.dispatch(Types.FETCH_ENTRYS, {url: this.author.url, archive: this.archive})
     }
   }
 }

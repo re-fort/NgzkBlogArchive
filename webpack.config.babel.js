@@ -11,7 +11,7 @@ const _static = 'static'
 module.exports = {
   entry: {
     app: `./${_src}/main.js`,
-    vendor: ['vue', 'vue-resource', 'vue-router', 'bulma', 'font-awesome/scss/font-awesome']
+    vendor: ['vue', 'vue-resource', 'vue-router', 'vuex', 'vuex-router-sync', 'lodash', 'bulma', 'font-awesome/scss/font-awesome']
   },
   output: {
     path: path.resolve(__dirname, `./${_dist}`),
@@ -23,6 +23,9 @@ module.exports = {
   },
   resolve: {
     root: path.join(__dirname, `${_src}`),
+    alias: {
+      'vue': 'vue/dist/vue.js'
+    },
     extensions: ['', '.js' , '.scss' , '.vue']
   },
   module: {
@@ -41,8 +44,8 @@ module.exports = {
         loader: 'json'
       },
       {
-        test: /\.jade$/,
-        loader: 'jade'
+        test: /\.pug$/,
+        loader: 'pug'
       },
       {
         test: /\.(sass|scss)$/,
@@ -67,7 +70,10 @@ module.exports = {
       new webpack.ProvidePlugin({
         Vue: 'vue',
         VueResource: 'vue-resource',
-        VueRouter: 'vue-router'
+        VueRouter: 'vue-router',
+        Vuex: 'vuex',
+        VuexRouterSync: 'vuex-router-sync',
+        _: 'lodash'
       }),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'

@@ -1,7 +1,9 @@
-import Top from 'components/Top.vue'
-import MaiFukagawa from 'components/MaiFukagawa.vue'
+import Top from 'components/Top'
+import MaiFukagawa from 'components/MaiFukagawa'
 
 export default {
-  '/':   {component: Top},
-  '/mai.fukagawa':   {component: MaiFukagawa}
+  routes: [
+    {path: '/', component: Top},
+    {path: '/mai.fukagawa', component: MaiFukagawa}
+  ]
 }
