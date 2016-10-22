@@ -1,6 +1,6 @@
 export default {
   Api: {
-  	// local
+    // local
     // root: 'http://localhost:3000/api/'
 
     // production
