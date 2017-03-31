@@ -8,3 +8,4 @@ NgzkBlogArchive
 
 ## 保管メンバー
 * 深川麻衣
+* 橋本奈々未
