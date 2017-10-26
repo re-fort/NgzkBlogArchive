@@ -2,7 +2,7 @@
   .columns
     .column.is-8.is-offset-2
       a.button.is-light.is-loading(v-show="isLoading")
-      div(v-for="entry in entrys")
+      div(v-for="entry in entries")
         h1.clearfix
           span.date
             span.yearmonth
@@ -29,8 +29,8 @@ export default {
     }
   },
   computed: {
-    entrys () {
-      return _.orderBy(this.$store.state.entrys, 'date')
+    entries () {
+      return _.orderBy(this.$store.state.entries, 'date')
     },
     isLoading () {
       return this.$store.state.isLoading

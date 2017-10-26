@@ -1,10 +1,8 @@
 <template lang="pug">
-  #NanamiHashimoto
-    section.section
-      select-form(v-bind:yms="yms"
-                  v-bind:author="author")
-    section.section
-      entry(v-bind:author="author")
+  section.section
+    select-form(v-bind:yms="yms"
+                v-bind:author="author")
+    entry(v-bind:author="author")
 </template>
 
 <script>

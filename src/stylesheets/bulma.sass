@@ -1,0 +1,37 @@
+@import "~bulma/sass/utilities/initial-variables";
+
+// Add your own colors, set new fonts, override Bulma styles
+// See also: http://bulma.io/documentation/overview/customize/
+
+@import "~bulma";
+
+$main-color: #7e1083
+$navbar-item-color: #fff
+
+.hero.is-info
+  background: $main-color
+
+.navbar-item
+  color: $navbar-item-color
+
+a.navbar-item
+  &:hover
+    background-color: transparent
+
+.select
+  width: 100%
+
+select
+  width: 100%
+
+.is-loading
+  width: 100%
+
+.footer a:not(.icon), .footer a:visited:not(.icon)
+  border-bottom: none
+
+@media screen and (max-width: 1023px)
+  .navbar-menu
+    background-color: initial
+    box-shadow: initial
+    padding: initial

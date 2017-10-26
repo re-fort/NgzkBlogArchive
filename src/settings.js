@@ -1,9 +1,6 @@
+// Setting
 export default {
   Api: {
-    // local
-    // root: 'http://localhost:3000/api/'
-
-    // production
-    root: 'https://ngzk-blog-archive-restapi.herokuapp.com/api/'
-  }
+    baseUrl: process.env.NODE_ENV === 'production' ? 'http://localhost:3000/api' : 'https://ngzk-blog-archive-restapi.herokuapp.com/api',
+  },
 }
