@@ -3,14 +3,14 @@
     .column.is-4.is-offset-4
       p.control
         span.select
-          select(v-model="archive" @change="getEntrys")
+          select(v-model="archive", @change="getEntries")
             option(v-for="ym in yms" v-bind:value="ym")
               | {{ ym | YYYYMM_JP }}
 </template>
 
 <script>
 import Settings from 'settings'
-import * as Types from 'vuex/types'
+
 export default {
   name: 'SelectForm',
   props: {
@@ -27,8 +27,8 @@ export default {
     }
   },
   methods: {
-    getEntrys: function() {
-      this.$store.dispatch(Types.FETCH_ENTRYS, {url: this.author.url, archive: this.archive})
+    getEntries: function() {
+      this.$store.dispatch('fetchEntries', { url: this.author.url, archive: this.archive })
     }
   }
 }

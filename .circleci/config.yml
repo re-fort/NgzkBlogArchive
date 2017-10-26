@@ -1,0 +1,59 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.5.0-browsers
+
+    working_directory: ~/tmp
+
+    branches:
+      only:
+        - master
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - node8.5.0-dependencies-{{ checksum "package.json" }}
+          # Fallback to using the latest cache if no exact match is found
+          - node8.5.0-dependencies-
+
+      # Install dependencies
+      - run:
+          name: Install
+          command: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: node8.5.0-dependencies-{{ checksum "package.json" }}
+
+      # Test
+      # - run:
+      #     name: Test
+      #     command: yarn test
+
+      # Check out temporary branch
+      - run:
+          name: Check out
+          command: git checkout --orphan tmp
+
+      # Build
+      - run:
+          name: Build
+          command: yarn run build
+
+      # Deploy
+      - run:
+          name: Deploy
+          command: |
+            git reset
+            git add -f dist/
+            git config --global user.name "Saori"
+            git config --global user.email "Saori@users.noreply.github.com"
+            git commit -m ":green_heart: CI build"
+            git subtree split --prefix dist -b gh-pages
+            git push -f origin gh-pages:gh-pages
+            git branch -D gh-pages
