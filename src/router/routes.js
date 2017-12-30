@@ -1,10 +1,9 @@
 // Routes
-import Top from 'src/components/Top'
-import MaiFukagawa from 'src/components/MaiFukagawa'
-import NanamiHashimoto from 'src/components/NanamiHashimoto'
+import Top from 'src/pages/Top'
+import Blog from 'src/pages/Blog'
 
 export default [
-  { path: '/', component: Top },
-  { path: '/mai.fukagawa', component: MaiFukagawa },
-  { path: '/nanami.hashimoto', component: NanamiHashimoto },
+  { path: '/', name: 'top', component: Top },
+  { path: '/blog/:name', name: 'blog', component: Blog, props: true },
+  { path: '/blog/:name/:ym', name: 'blogWithDate', component: Blog, props: true },
 ]

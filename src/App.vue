@@ -21,7 +21,7 @@
     footer.footer
       .container
         .content.has-text-centered
-          a(href="http://re-fort.net/")
+          a(href="https://re-fort.net/")
             i.fa.fa-heart
             | merkmal
           .scrollToTop(v-if="position > 200", @click=("scrollToTop"))
@@ -30,23 +30,66 @@
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data () {
-    return {
-      position: 0
-    }
-  },
-  created: function() {
-    let self = this
-    document.onscroll = function(e){
-      self.position = document.documentElement.scrollTop || document.body.scrollTop
-    }
-  },
-  methods:{
-    scrollToTop: function(){
-      window.scrollTo(0,0)
+  import { mapActions } from 'vuex'
+  import mixinPing from 'mixins/ping'
+
+  export default {
+    name: 'App',
+    data () {
+      return {
+        position: 0
+      }
+    },
+    mixins: [mixinPing],
+    created () {
+      document.onscroll = () => {
+        this.position = document.documentElement.scrollTop || document.body.scrollTop
+      }
+    },
+    methods: {
+      ...mapActions(['ping']),
+      scrollToTop () {
+        window.scrollTo(0,0)
+      }
     }
   }
-}
 </script>
+
+<style lang="sass" scoped>
+  @import "src/stylesheets/variables"
+
+  #app
+    display: flex
+    min-height: 100vh
+    flex-direction: column
+
+  .section
+    flex: 1
+
+  .hero.is-info
+    background: $main-color
+
+  .navbar-item
+    color: $navbar-item-color
+
+  a.navbar-item
+    &:hover
+      background-color: transparent
+
+  .scrollToTop
+    position: fixed
+    bottom: 10px
+    right: 10px
+    color: $main-color
+    &:hover
+      cursor: pointer
+
+  .footer a:not(.icon), .footer a:visited:not(.icon)
+    border-bottom: none
+
+  @media screen and (max-width: 1023px)
+    .navbar-menu
+      background-color: initial
+      box-shadow: initial
+      padding: initial
+</style>

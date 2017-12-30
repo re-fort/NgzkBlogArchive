@@ -9,7 +9,6 @@ import App from 'App'
 
 // Sass
 import 'stylesheets/bulma'
-import 'stylesheets/app'
 
 // axios
 Vue.prototype.$http = axios
