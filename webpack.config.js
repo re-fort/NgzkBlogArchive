@@ -11,7 +11,6 @@ const _stylesheets = 'stylesheets'
 const _static = 'static'
 const _publicPath = getPublicPath()
 
-function isTesting () { return process.env.NODE_ENV === 'testing' }
 function isProduction () { return process.env.NODE_ENV === 'production' }
 function getPublicPath () { return isProduction() ? `/${_project}/` : '/' }
 
@@ -117,14 +116,6 @@ module.exports = {
     noInfo: true,
   },
   devtool: '#source-map',
-}
-
-if (!isTesting()) {
-  module.exports.plugins.push(
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-    })
-  )
 }
 
 if (isProduction()) {

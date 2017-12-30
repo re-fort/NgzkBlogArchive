@@ -3,22 +3,25 @@ import { Xhr } from '../lib/axios'
 
 Vue.use(Vuex)
 
+const getDefaultState = () => ({
+  entries: [],
+  isLoading: false,
+  date: '',
+})
+
 export default new Vuex.Store({
-  state: {
-    entries: [],
-    isLoading: false
-  },
+  state: getDefaultState(),
 
   actions: {
-    init: ({commit}) => {
-      commit('isLoading', false)
-      commit('entries', [])
+    ping: () => {
+      // to start Heroku instance more faster
+      Xhr.get('/ping')
     },
 
-    fetchEntries: ({dispatch, commit}, {url, archive}) => {
+    fetchEntries: ({dispatch, commit}, {url, date}) => {
       dispatch('beforeFetching')
-      Xhr.get(`${url}/${archive}`, {}, (response) => {
-          commit('entries', response.data)
+      Xhr.get(`${url}/${date}`, {}, (response) => {
+          commit('updateEntries', response.data)
           dispatch('afterFetching')
         }, (response) => {
           console.error(response)
@@ -27,23 +30,38 @@ export default new Vuex.Store({
     },
 
     beforeFetching: ({commit}) => {
-      commit('isLoading', true)
-      commit('entries', [])
+      commit('updateIsLoading', true)
+      commit('updateEntries', [])
     },
 
     afterFetching: ({commit}) => {
-      commit('isLoading', false)
+      commit('updateIsLoading', false)
     },
   },
 
   mutations: {
-    entries: (state, entries) => {
+    reset: (state) => {
+      const defaultState = getDefaultState()
+      Object.keys(defaultState).forEach(key => state[key] = defaultState[key])
+    },
+
+    updateEntries: (state, entries) => {
       state.entries = entries
     },
 
-    isLoading: (state, isLoading) => {
+    updateIsLoading: (state, isLoading) => {
       state.isLoading = isLoading
-    }
+    },
+
+    updateDate: (state, date) => {
+      state.date = date
+    },
+  },
+
+  getters: {
+    entriesSortByDate: (state) => {
+      return _.orderBy(state.entries, 'date')
+    },
   },
   strict: process.env.NODE_ENV !== 'production',
 })
