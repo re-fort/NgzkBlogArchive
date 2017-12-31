@@ -2,7 +2,7 @@
   .columns
     .column.is-8.is-offset-2
       a.button.is-light.is-loading(v-show="isLoading")
-      div(v-for="entry in entriesSortByDate")
+      div(v-for="entry in sortedEntries")
         h1.clearfix
           span.date
             span.yearmonth
@@ -21,19 +21,35 @@
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
-
   export default {
     name: 'Entry',
     props: {
       author: {
-        type: Object
-      }
+        type: Object,
+      },
+      entries: {
+        type: Array,
+      },
+      sort: {
+        type: String,
+        default: 'date',
+      },
+      order: {
+        type: String,
+        default: 'asc',
+      },
+      sortEntries: {
+        type: Function,
+      },
+      isLoading: {
+        type: Boolean,
+      },
     },
     computed: {
-      ...mapState(['entries', 'isLoading']),
-      ...mapGetters(['entriesSortByDate']),
-    }
+      sortedEntries () {
+        return this.sortEntries(this.sort, this.order)
+      },
+    },
   }
 </script>
 

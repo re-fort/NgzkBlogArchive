@@ -1,11 +1,11 @@
 <template lang="pug">
   section.section
-    select-date(:ymList="ymList", :date="ym")
-    entry(:author="author")
+    select-date(:ymList="ymList", :date="date", :updateDate="updateDate")
+    entry(:author="author", :entries="entries", sort="date", order="asc", :sortEntries="sortEntries", :isLoading="isLoading")
 </template>
 
 <script>
-  import { mapActions, mapState, mapMutations } from 'vuex'
+  import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
   import SelectDate from 'components/SelectDate'
   import Entry from 'components/Entry'
   import { members } from 'src/ngzk46'
@@ -32,7 +32,8 @@
       if (!!this.ym && this.ymList.includes(this.ym)) this.updateDate(this.ym)
     },
     computed: {
-      ...mapState(['date']),
+      ...mapState(['date', 'entries', 'isLoading']),
+      ...mapGetters(['sortEntries']),
     },
     data () {
       const member = members.find(m => m.link === this.name)
