@@ -59,8 +59,8 @@ export default new Vuex.Store({
   },
 
   getters: {
-    entriesSortByDate: (state) => {
-      return _.orderBy(state.entries, 'date')
+    sortEntries: (state) => (key, order) => {
+      return _.orderBy(state.entries, key, order)
     },
   },
   strict: process.env.NODE_ENV !== 'production',
