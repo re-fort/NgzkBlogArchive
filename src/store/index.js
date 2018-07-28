@@ -13,14 +13,9 @@ export default new Vuex.Store({
   state: getDefaultState(),
 
   actions: {
-    ping: () => {
-      // to start Heroku instance more faster
-      Xhr.get('/ping')
-    },
-
-    fetchEntries: ({dispatch, commit}, {url, date}) => {
+    fetchEntries: ({dispatch, commit}, {url}) => {
       dispatch('beforeFetching')
-      Xhr.get(`${url}/${date}`, {}, (response) => {
+      Xhr.get(url, {}, (response) => {
           commit('updateEntries', response.data)
           dispatch('afterFetching')
         }, (response) => {
