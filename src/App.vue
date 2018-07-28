@@ -31,7 +31,6 @@
 
 <script>
   import { mapActions } from 'vuex'
-  import mixinPing from 'mixins/ping'
 
   export default {
     name: 'App',
@@ -40,7 +39,6 @@
         position: 0
       }
     },
-    mixins: [mixinPing],
     created () {
       document.onscroll = () => {
         this.position = document.documentElement.scrollTop || document.body.scrollTop

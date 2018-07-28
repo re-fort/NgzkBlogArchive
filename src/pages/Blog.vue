@@ -50,7 +50,7 @@
     watch: {
       date () {
         if (this.date === '') return
-        this.fetchEntries({ url: `/${this.author.link}`, date: this.date })
+        this.fetchEntries({ url: `/${this.author.link}/entries/${this.date}.json` })
         this.$router.push(`${this.$route.name === 'blog' ? this.$route.path : '.'}/${this.date}`)
       },
     },
