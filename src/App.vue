@@ -21,6 +21,10 @@
     footer.footer
       .container
         .content.has-text-centered
+          a(href="https://re-fort.net/KykzkBlogArchive")
+            i.fa.fa-heart
+            | KykzkBlogArchive
+        .content.has-text-centered
           a(href="https://re-fort.net/")
             i.fa.fa-heart
             | merkmal
