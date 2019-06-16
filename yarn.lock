@@ -5513,6 +5513,14 @@ vue-eslint-parser@^2.0.1-beta.0:
     esquery "^1.0.0"
     lodash "^4.17.4"
 
+vue-google-adsense@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/vue-google-adsense/-/vue-google-adsense-1.6.0.tgz#908fa493ded367e7126d5ba74006baddb0ae86e7"
+  integrity sha512-y3+f91N2jsPntEUGCqxGHY0sdo0uxR1SzCEvthYzBi5JiOpHKzdIsEMIvAa1Vd/YZGVa3x8Fw9kKCGhpi1xYDA==
+  dependencies:
+    vue "^2.6.10"
+    vue-script2 "2.0.3"
+
 vue-hot-reload-api@^2.2.0, vue-hot-reload-api@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.4.tgz#683bd1d026c0d3b3c937d5875679e9a87ec6cd8f"
@@ -5549,6 +5557,11 @@ vue-router@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.1.tgz#d9b05ad9c7420ba0f626d6500d693e60092cc1e9"
 
+vue-script2@2.0.3, vue-script2@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/vue-script2/-/vue-script2-2.0.3.tgz#74a53a51cc72eeb0c8935f40f0155968a94a2d7c"
+  integrity sha512-sGsFbqCIZDbPq140X1p8T6Y72MoCtkFpQ7CfhknZLqDZxMGWavFqIY/5YsnhqxxatWnYy0us/IoHSDr5l2JZzQ==
+
 vue-style-loader@^3.0.0, vue-style-loader@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-3.0.3.tgz#623658f81506aef9d121cdc113a4f5c9cac32df7"
@@ -5576,6 +5589,11 @@ vue-test-utils@vue-test-utils@1.0.0-beta:
 vue@^2.5.13:
   version "2.5.13"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.13.tgz#95bd31e20efcf7a7f39239c9aa6787ce8cf578e1"
+
+vue@^2.6.10:
+  version "2.6.10"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
+  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 vuex-router-sync@^5.0.0:
   version "5.0.0"

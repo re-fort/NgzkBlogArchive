@@ -18,9 +18,14 @@
         .fkd
         .entrybody(v-html="entry.body")
         .entrybottom
+        Adsense(data-ad-client="ca-pub-6267609390272538" data-ad-slot="8987583712")
 </template>
 
 <script>
+  import Adsense from 'vue-google-adsense/dist/Adsense.min.js'
+  Vue.use(require('vue-script2'))
+  Vue.use(Adsense)
+
   export default {
     name: 'Entry',
     props: {
@@ -131,7 +136,10 @@
     padding: 0.5em 0
     font-size: 85%
     text-align: center
-    margin-bottom: 5em
+
+  .adswrapper
+    margin-bottom: 20px
+    max-height: 300px
 
   @media screen and (max-width: 640px)
     h1
