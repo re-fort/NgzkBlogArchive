@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const extractTextPlugin = require('extract-text-webpack-plugin')
+const copyPlugin = require('copy-webpack-plugin')
 
 const _project = 'NgzkBlogArchive'
 const _src = 'src'
@@ -109,6 +110,9 @@ module.exports = {
       favicon: `${_src}/${_static}/favicon.ico`,
       inject: true,
     }),
+    new copyPlugin([
+      './src/static/favicon.png',
+    ]),
   ],
   devServer: {
     contentBase: path.join(__dirname, _dist),
