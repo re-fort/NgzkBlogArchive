@@ -31,6 +31,7 @@ export default new Vuex.Store({
 
     afterFetching: ({commit}) => {
       commit('updateIsLoading', false)
+      window.scrollTo(0,0)
     },
   },
 
