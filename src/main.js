@@ -4,6 +4,7 @@ import axios from 'axios'
 import router from './router'
 import store from './store'
 import VuexRouterSync from 'vuex-router-sync'
+import * as serviceWorker from './serviceWorker'
 
 import App from 'App'
 
@@ -24,3 +25,5 @@ new Vue({
     'App': App,
   },
 }).$mount('#app')
+
+serviceWorker.register()
