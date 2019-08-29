@@ -2,7 +2,7 @@
   "name":	"NgzkBlogArchive",
   "short_name":	"NgzkBlogArchive",
   "description": "乃木坂46卒業メンバーのブログを保管します。◢",
-  "start_url": "/",
+  "start_url": "/NgzkBlogArchive/#/",
   "display": "standalone",
   "background_color":	"#fff",
   "theme_color": "#7e1083",
