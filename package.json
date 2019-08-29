@@ -50,6 +50,8 @@
     "vue-template-compiler": "^2.5.13",
     "vue-test-utils": "vue-test-utils@1.0.0-beta",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^2.9.7",
+    "workbox-sw": "^4.3.1",
+    "workbox-webpack-plugin": "^4.3.1"
   }
 }
