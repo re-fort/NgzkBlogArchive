@@ -114,6 +114,7 @@ module.exports = {
     }),
     new copyPlugin([
       './src/static/favicon.png',
+      './src/static/apple-touch-icon.png',
       './manifest.json',
       {
         from: './src/static/icons/*.png',
