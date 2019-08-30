@@ -20,7 +20,6 @@ module.exports = {
   entry: {
     app: `./${_src}/main.js`,
     vendor: ['vue', 'axios', 'vue-router', 'vuex', 'vuex-router-sync', 'font-awesome/scss/font-awesome'],
-
   },
   output: {
     path: path.resolve(__dirname, `./${_dist}`),
