@@ -25,6 +25,10 @@
             i.fa.fa-heart
             | KykzkBlogArchive
         .content.has-text-centered
+          a(href="https://re-fort.net/HntzkBlogArchive")
+            i.fa.fa-heart
+            | HntzkBlogArchive
+        .content.has-text-centered
           a(href="https://re-fort.net/")
             i.fa.fa-heart
             | merkmal
