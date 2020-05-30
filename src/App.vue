@@ -11,7 +11,7 @@
             .navbar-menu.is-active
               .navbar-end
                 .navbar-item
-                  a.navbar-item(href="https://twitter.com/intent/tweet?url=http://re-fort.net/NgzkBlogArchive&text=NgzkBlogArchive%20-")
+                  a.navbar-item(href="https://twitter.com/intent/tweet?url=https://re-fort.net/NgzkBlogArchive&text=NgzkBlogArchive%20-")
                     span.icon
                       i.fa.fa-twitter-square.fa-2x
                   a.navbar-item(href="https://github.com/re-fort/NgzkBlogArchive")
