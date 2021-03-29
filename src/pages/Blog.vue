@@ -1,7 +1,7 @@
 <template lang="pug">
   section.section
     select-date(:ymList="ymList", :date="date", :updateDate="updateDate")
-    entry(:author="author", :entries="entries", sort="date", order="asc", :sortEntries="sortEntries", :isLoading="isLoading")
+    entry(:author="author", :entries="entries", :date="date", sort="date", order="asc", :sortEntries="sortEntries", :isLoading="isLoading")
     page-navigator(:ymList="ymList", :date="date", :updateDate="updateDate")
 </template>
 

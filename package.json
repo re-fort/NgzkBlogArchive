@@ -16,6 +16,7 @@
     "bulma": "^0.5.3",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
+    "md5": "^2.3.0",
     "vue": "^2.5.13",
     "vue-google-adsense": "^1.6.0",
     "vue-router": "^3.0.1",

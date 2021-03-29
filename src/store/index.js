@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import md5 from 'md5'
 import { Xhr } from '../lib/axios'
 
 Vue.use(Vuex)
@@ -41,7 +42,8 @@ export default new Vuex.Store({
     },
 
     updateEntries: (state, entries) => {
-      state.entries = entries
+      const entriesWithId = entries.map(entry => ({ ...entry, ...{ id: md5(entry.date + entry.title) } }));
+      state.entries = entriesWithId
     },
 
     updateIsLoading: (state, isLoading) => {
