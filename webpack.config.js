@@ -10,6 +10,7 @@ const _project = 'NgzkBlogArchive'
 const _src = 'src'
 const _test = 'tests'
 const _dist = 'dist'
+const _stylesheets = 'stylesheets'
 const _static = 'static'
 const _publicPath = getPublicPath()
 
@@ -24,7 +25,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, `./${_dist}`),
-    filename: isProduction() ? 'js/[name].[hash].js' : 'js/[name].js',
+    filename: isProduction() ? 'js/[name].[contenthash].js' : 'js/[name].js',
   },
   resolve: {
     modules: [
@@ -80,7 +81,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif)$/,
         loader: 'file-loader',
         options: {
-          name: isProduction() ? `${_static}/[name].[hash].[ext]` : `${_static}/[name].[ext]`,
+          name: isProduction() ? `${_static}/[name].[contenthash].[ext]` : `${_static}/[name].[ext]`,
           publicPath: _publicPath,
         },
       },
@@ -88,7 +89,7 @@ module.exports = {
         test: /\.(svg|eot|ttf)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader',
         options: {
-          name: isProduction() ? `${_static}/[name].[hash].[ext]` : `${_static}/[name].[ext]`,
+          name: isProduction() ? `${_static}/[name].[contenthash].[ext]` : `${_static}/[name].[ext]`,
           publicPath: _publicPath,
         },
       },
@@ -96,14 +97,16 @@ module.exports = {
         test: /\.woff(\d+)?(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader',
         options: {
-          name: isProduction() ? `${_static}/[name].[hash].[ext]` : `${_static}/[name].[ext]`,
+          name: isProduction() ? `${_static}/[name].[contenthash].[ext]` : `${_static}/[name].[ext]`,
           publicPath: _publicPath,
         },
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: isProduction() ? `${_stylesheets}/[name].[contenthash].css` : `${_stylesheets}/[name].css`,
+    }),
     new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       Vue: ['vue', 'default'],
