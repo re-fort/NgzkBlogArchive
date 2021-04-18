@@ -1,5 +1,26 @@
 {
-  "presets": ["env"],
-  "plugins": ["transform-runtime", "transform-object-rest-spread"],
-  "comments": false
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "last 2 Chrome versions",
+            "last 2 Firefox versions",
+            "Firefox ESR",
+            "Safari >= 9",
+            "last 2 Edge versions",
+            "ie >= 11",
+            "iOS >= 9",
+            "last 2 ChromeAndroid versions",
+            "last 2 FirefoxAndroid versions"
+          ]
+        },
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }
