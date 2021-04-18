@@ -1,15 +1,15 @@
 const path = require('path')
 const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
-const extractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const copyPlugin = require('copy-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 const workboxPlugin = require('workbox-webpack-plugin')
 
 const _project = 'NgzkBlogArchive'
 const _src = 'src'
 const _test = 'tests'
 const _dist = 'dist'
-const _stylesheets = 'stylesheets'
 const _static = 'static'
 const _publicPath = getPublicPath()
 
@@ -17,6 +17,7 @@ function isProduction () { return process.env.NODE_ENV === 'production' }
 function getPublicPath () { return isProduction() ? `/${_project}/` : '/' }
 
 module.exports = {
+  mode: isProduction() ? 'production' : 'development',
   entry: {
     app: `./${_src}/main.js`,
     vendor: ['vue', 'axios', 'vue-router', 'vuex', 'vuex-router-sync', 'font-awesome/scss/font-awesome'],
@@ -53,23 +54,27 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.js$/,
-        use: 'webpack-espower-loader',
-        include: [
-          path.resolve(__dirname, _test),
+        test: /\.pug$/,
+        oneOf: [
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader'],
+          },
         ],
       },
       {
-        test: /\.json$/,
-        use: ['json-loader'],
-      },
-      {
-        test: /\.pug$/,
-        use: ['pug-loader'],
-      },
-      {
         test: /\.(sass|scss)$/,
-        use: extractTextPlugin.extract('css-loader?minimize!sass-loader?minimize'),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                indentedSyntax: true,
+              },
+            },
+        }],
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
@@ -98,9 +103,8 @@ module.exports = {
     ],
   },
   plugins: [
-    new extractTextPlugin({
-      filename: isProduction() ? `${_stylesheets}/[name].[contenthash].css` : `${_stylesheets}/[name].css`,
-    }),
+    new MiniCssExtractPlugin(),
+    new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       Vue: ['vue', 'default'],
       _: 'lodash',
@@ -111,20 +115,22 @@ module.exports = {
       favicon: `${_src}/${_static}/favicon.ico`,
       inject: true,
     }),
-    new copyPlugin([
-      './src/static/favicon.png',
-      './src/static/apple-touch-icon.png',
-      './manifest.json',
-      {
-        from: './src/static/icons/*.png',
-        to: 'static',
-        transformPath(targetPath) {
-          return targetPath.replace('src/static/', '');
-        },
+    new copyPlugin({
+        patterns: [
+          './src/static/favicon.png',
+          './src/static/apple-touch-icon.png',
+          './manifest.json',
+          {
+            from: './src/static/icons/*.png',
+            to: 'static',
+            transformPath(targetPath) {
+              return targetPath.replace('src/static/', '');
+            },
+          },
+        ],
       },
-    ]),
+    ),
     new workboxPlugin.GenerateSW({
-      globDirectory: _dist,
       swDest: 'service-worker.js',
       clientsClaim: true,
       skipWaiting: true,
@@ -141,19 +147,19 @@ module.exports = {
             statuses: [0, 200],
           },
         },
-      }]
+      }],
     }),
   ],
+  target: ['web', 'es5'],
   devServer: {
     contentBase: path.join(__dirname, _dist),
     historyApiFallback: true,
     noInfo: true,
   },
-  devtool: '#source-map',
+  devtool: 'source-map',
 }
 
 if (isProduction()) {
-  module.exports.devtool = '#eval'
   // https://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -161,11 +167,8 @@ if (isProduction()) {
         NODE_ENV: '"production"',
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
   ])
+  module.exports.optimization = {
+    minimize: false,
+  }
 }
