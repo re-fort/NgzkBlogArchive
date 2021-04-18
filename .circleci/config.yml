@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.5.0-browsers
+      - image: circleci/node:14.16.1-browsers
 
     working_directory: ~/tmp
 
@@ -16,9 +16,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - node8.5.0-dependencies-{{ checksum "package.json" }}
+          - node14.16.1-dependencies-{{ checksum "package.json" }}
           # Fallback to using the latest cache if no exact match is found
-          - node8.5.0-dependencies-
+          - node14.16.1-dependencies-
 
       # Install dependencies
       - run:
@@ -28,7 +28,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: node8.5.0-dependencies-{{ checksum "package.json" }}
+          key: node14.16.1-dependencies-{{ checksum "package.json" }}
 
       # Test
       # - run:
