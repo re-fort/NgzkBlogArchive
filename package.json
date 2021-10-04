@@ -11,7 +11,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bulma": "^0.5.3",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.21",
